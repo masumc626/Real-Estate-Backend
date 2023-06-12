@@ -3,7 +3,9 @@ const { initializeApp } = require("firebase/app");
 const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require("firebase/storage");
 const firebaseConfig = require("../db/fireBase");
 const express = require("express");
+const general_info = require('../models/Add-property/general_info');
 const addPropertyController = express.Router();
+
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
@@ -16,6 +18,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 addPropertyController.post('', upload.single("image"), async (req, res) => {
     try {
+        console.log(true)
         const dateTime = giveCurrentDateTime();
         const storageRef = ref(storage, `files/${req.file.originalname + "    " + dateTime}`);
 
@@ -31,13 +34,15 @@ addPropertyController.post('', upload.single("image"), async (req, res) => {
         //grap public url
         const downloadURL = await getDownloadURL(snapShot.ref);
 
-        const generaldetails = await generalInfo.create({
+        const generaldetails = new general_info ({
             ...req.body,
             image: downloadURL
         })
+        const data = await generaldetails.save();
+
         return res.status(200).json({
             message: "success",
-            generaldetails
+            data
         })
 
     }
