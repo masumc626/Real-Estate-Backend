@@ -9,6 +9,9 @@ const generalInfo = require("../models/Add-property/general_info");
 const locationInfo = require("../models/Add-property/location_info");
 const propertyInfo = require("../models/Add-property/property_details");
 
+//IMPORT CONTROLLERS
+const addPropertyController = require('../controller/addPropertyController');
+
 
 //POST END POINT FOR BASIC DETAILS 
 router.post("/api/pro/basic", async (req, res) => {
@@ -28,25 +31,27 @@ router.post("/api/pro/basic", async (req, res) => {
 
 
 //POST END POINT FOR GENERAL DETAILS 
-router.post("/api/pro/general", upload, async (req, res) => {
-    try {
+router.use("/api/pro/general",addPropertyController);
 
-        const { image } = req.file
-        const generaldetails = await generalInfo.create({
-            ...req.body,
-            image: req.file.filename
-        })
-        return res.status(200).json({
-            message: "success",
-            generaldetails
-        })
-    } catch (e) {
-        return res.status(400).json({
-            message: e.message
-        })
-    }
+//  upload, async (req, res) => {
+//     try {
 
-})
+//         const { image } = req.file
+//         const generaldetails = await generalInfo.create({
+//             ...req.body,
+//             image: req.file.filename
+//         })
+//         return res.status(200).json({
+//             message: "success",
+//             generaldetails
+//         })
+//     } catch (e) {
+//         return res.status(400).json({
+//             message: e.message
+//         })
+//     }
+
+// })
 
 
 //POST END POINT FOR LOCATION DETAILS 
