@@ -85,38 +85,38 @@ router.post("/api/pro/property", async (req, res) => {
 
 
 //REQUIRED FIELD POST REQUEST
-router.post("/api/v4/require", upload, async (req, res) => {
-    try {
-        const { image } = req.file
-        const requireInfodetails = await requireInfo.create({
-            ...req.body,
-            image: req.file.filename,
-        })
-        return res.status(200).json({
-            message: "success",
-            requireInfodetails
-        })
-    } catch (e) {
-        return res.status(400).json({
-            message: e.message
-        })
-    }
-})
+// router.post("/api/v4/require", upload, async (req, res) => {
+//     try {
+//         const { image } = req.file
+//         const requireInfodetails = await requireInfo.create({
+//             ...req.body,
+//             image: req.file.filename,
+//         })
+//         return res.status(200).json({
+//             message: "success",
+//             requireInfodetails
+//         })
+//     } catch (e) {
+//         return res.status(400).json({
+//             message: e.message
+//         })
+//     }
+// })
 
 //REQUIRED FIELD GET REQUEST
-router.get("/requireinfo", async (req, res) => {
-    try {
-        const requiredData = await requireInfo.find();
-        return res.status(200).json({
-            message: "success",
-            requiredData
-        })
-    } catch (e) {
-        return res.status(400).json({
-            mesaage: e.mesaage
-        })
-    }
-})
+// router.get("/requireinfo", async (req, res) => {
+//     try {
+//         const requiredData = await requireInfo.find();
+//         return res.status(200).json({
+//             message: "success",
+//             requiredData
+//         })
+//     } catch (e) {
+//         return res.status(400).json({
+//             mesaage: e.mesaage
+//         })
+//     }
+// })
 
 
 

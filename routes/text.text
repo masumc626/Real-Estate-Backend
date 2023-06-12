@@ -1,0 +1,12 @@
+PS C:\Users\Manoj\Desktop\Real estate_backend\routes> git push origin master
+To https://github.com/masumc626/Real-Estate-Backend.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/masumc626/Real-Estate-Backend.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+PS C:\Users\Manoj\Desktop\Real estate_backend\routes> git pull origin master
+From https://github.com/masumc626/Real-Estate-Backend
+ * branch            master     -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
