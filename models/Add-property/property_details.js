@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const propertyDeatilScehma = new mongoose.Schema({
   ppdid: {
     type: String,
+    default: function () {
+      const year = new Date().getFullYear().toString().substr(-2);
+      const randomNum = Math.floor(Math.random() * 9000) + 1000;
+      return `PPDID${year}${randomNum}`;
+    },
   },
   length: {
     type: Number,
@@ -58,6 +63,10 @@ const propertyDeatilScehma = new mongoose.Schema({
     enum: ["east", "west", "north", "south"],
     default: "east",
   },
+  basicInfo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "basicinfos",
+}
 });
 
 module.exports = mongoose.model("propertieInfo", propertyDeatilScehma);

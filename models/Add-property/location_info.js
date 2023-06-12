@@ -35,6 +35,10 @@ const locationSchema = new mongoose.Schema({
     },
     Longitude: {
         type: Number
+    },
+    generalInfo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "generals",
     }
 })
 

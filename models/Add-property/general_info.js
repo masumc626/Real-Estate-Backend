@@ -30,7 +30,12 @@ const generalInfoScehma = new mongoose.Schema({
     image: {
         type: String,
         required: true
+    },
+    propertyInfo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "properties",
     }
+
 
 })
 module.exports = mongoose.model("general", generalInfoScehma)
