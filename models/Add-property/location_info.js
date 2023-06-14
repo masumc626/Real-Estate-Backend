@@ -39,6 +39,9 @@ const locationSchema = new mongoose.Schema({
     generalInfo: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "generals",
+    },
+    authorId: {
+        type: mongoose.Schema.Types.ObjectId
     }
 })
 

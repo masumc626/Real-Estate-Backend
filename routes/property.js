@@ -11,12 +11,16 @@ const propertyInfo = require("../models/Add-property/property_details");
 
 //IMPORT CONTROLLERS
 const addPropertyController = require('../controller/addPropertyController');
+const basic_info = require('../models/Add-property/basic_info');
+const general_info = require('../models/Add-property/general_info');
+
 
 
 //POST END POINT FOR BASIC DETAILS 
 router.post("/api/pro/basic", async (req, res) => {
 
     try {
+        console.log(true)
         const basicdetails = await BasicInfo.create(req.body)
         return res.status(200).json({
             message: "success",
@@ -31,7 +35,7 @@ router.post("/api/pro/basic", async (req, res) => {
 
 
 //POST END POINT FOR GENERAL DETAILS 
-router.use("/api/pro/general",addPropertyController);
+router.use("/api/pro/general", addPropertyController);
 
 //  upload, async (req, res) => {
 //     try {
@@ -129,23 +133,44 @@ router.post("/api/pro/property", async (req, res) => {
 router.get("/api/alldata", async (req, res) => {
     try {
 
-        const locationcollection = await locationInfo.find().populate({
-            path: "generalInfo",
-            select: "mobile image generalInfo -_id",
-            populate: {
-                path: "propertyInfo",
-                select: "ppdid totalArea  propertyInfo -_id",
-                populate: {
-                    path: "basicInfo",
-                    select: "property basicInfo -_id"
-                }
-            }
-        }).select("-_id generalInfo propertyInfo basicInfo");
+        // const locationcollection = await locationInfo.find().populate({
+        //     path: "generalInfo",
+        //     select: "mobile image generalInfo",
+        //     populate: {
+        //         path: "propertyInfo",
+        //         select: "ppdid totalArea  propertyInfo",
+        //         populate: {
+        //             path: "basicInfo",
+        //             select: "property basicInfo"
+        //         }
+        //     }
+        // }).select("generalInfo propertyInfo basicInfo");
+        // const authorId = req.params.author
+        // if (authorId) {
+            const locationcollection = await general_info.find()
+            // const locationcollection = await locationInfo.find({ authorId: authorId })
+            //     .populate({
+            //         path: "generalInfo",
+            //         populate: {
+            //             path: "propertyInfo",
+            //             populate: {
+            //                 path: "basicInfo"
+            //             }
+            //         }
+            //     })
 
-        return res.status(200).json({
-            message: "success",
-            locationcollection,
-        });
+            console.log(locationcollection)
+
+            return res.status(200).json({
+                message: "success",
+                locationcollection,
+            });
+        // }
+        // else {
+            // return res.status(400).json({
+            //     message: failed
+            // });
+        // }
     } catch (err) {
         return res.status(400).json({
             error: err.message

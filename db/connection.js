@@ -1,9 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const connection = async () =>{
-    mongoose.set('strictQuery', false);
-   mongoose.connect(process.env.DATABASE_URL)
-        
+module.exports = async () => {
+
+    try {
+        await mongoose.connect(
+            `${process.env.USER_NAME}${process.env.USER_PASSWORD}${process.env.DATABSE}`
+        )
+    }
+    catch (err) {
+        console.log(err.message);
+    };
+
 }
-
-module.exports = connection;
