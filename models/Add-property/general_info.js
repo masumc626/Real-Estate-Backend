@@ -14,7 +14,7 @@ const generalInfoScehma = new mongoose.Schema({
     postedby: {
         type: String,
         enum: ["Dealer", "Owner"],
-        default: "owner"
+        default: "Owner"
     },
     saletype: {
         type: String
