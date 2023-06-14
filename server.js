@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
-<<<<<<< HEAD
-const PORT = 8002;
-=======
->>>>>>> 99fa27ebd0f40c391094e682c00e0780f61acad1
+
+
+
 const dotenv = require("dotenv").config();
 const cors = require("cors");
 const bodyParserErrorHandler = require('express-body-parser-error-handler');
@@ -26,11 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParserErrorHandler());
 
 app.use("/", propertyRouter);
-<<<<<<< HEAD
+
 app.use("/", userRouter);
 
-app.listen(PORT || process.env.PORT, () => { console.log(`server started at PORT ${PORT}`) })
-=======
+
 // app.use("/", userRouter);
 
 mongoose.connection.once('open', () => {
@@ -44,4 +42,4 @@ mongoose.connection.once('open', () => {
 
 });
 // app.listen(PORT || process.env.PORT, () => { console.log(`server started at PORT ${PORT}`) })
->>>>>>> 99fa27ebd0f40c391094e682c00e0780f61acad1
+
