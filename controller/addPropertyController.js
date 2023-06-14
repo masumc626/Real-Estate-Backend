@@ -18,7 +18,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 addPropertyController.post('', upload.single("image"), async (req, res) => {
     try {
-        console.log(true)
+        console.log(true, "generalinfo");
         const dateTime = giveCurrentDateTime();
         const storageRef = ref(storage, `files/${req.file.originalname + "    " + dateTime}`);
 

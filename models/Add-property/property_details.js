@@ -66,7 +66,7 @@ const propertyDeatilScehma = new mongoose.Schema({
   basicInfo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "basicinfos",
-}
+  }
 });
 
 module.exports = mongoose.model("propertieInfo", propertyDeatilScehma);

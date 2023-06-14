@@ -1,28 +1,36 @@
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const cors = require("cors");
 const bodyParserErrorHandler = require('express-body-parser-error-handler');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8001;
+
+
+//ALL ROUTERS
+const propertyRouter = require("./routes/property");
+const userRoute = require("./routes/user");
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended : true}));
+
+//using express-body-parser-error-handler to handle the error incase of invalid json received
+app.use(bodyParserErrorHandler());
 
 //DB CONNECTION
 const connection = require("./db/connection");
 connection();
 
-//ALL ROUTERS
-const propertyRouter = require("./routes/property");
-// const userRouter = require("./routes/user");
+app.use("/property", propertyRouter);
+app.use("/user", userRoute);
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-//using express-body-parser-error-handler to handle the error incase of invalid json received
-app.use(bodyParserErrorHandler());
-
-app.use("/", propertyRouter);
-// app.use("/", userRouter);
+app.use("/*", (req, res) => {
+    res.send("server is running")
+})
 
 mongoose.connection.once('open', () => {
 

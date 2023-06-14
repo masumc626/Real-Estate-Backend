@@ -34,6 +34,9 @@ const basicInfoSchema = new mongoose.Schema({
         type: String,
         enum: ["yes", "no"],
         default: "no"
+    },
+    authorId : {
+        type: mongoose.Schema.Types.ObjectId
     }
 
 }, { timestamps: true });
