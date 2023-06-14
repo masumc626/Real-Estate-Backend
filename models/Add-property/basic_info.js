@@ -41,4 +41,4 @@ const basicInfoSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model("basicinfos", basicInfoSchema)
+module.exports = mongoose.model("Basic", basicInfoSchema)

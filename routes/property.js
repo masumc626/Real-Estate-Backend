@@ -130,54 +130,37 @@ router.post("/api/pro/property", async (req, res) => {
 
 
 //GET ALL DATA OF A PROPERTY
-router.get("/api/alldata", async (req, res) => {
+router.get("/api/alldata/:authorId", async (req, res) => {
     try {
-
-        // const locationcollection = await locationInfo.find().populate({
-        //     path: "generalInfo",
-        //     select: "mobile image generalInfo",
-        //     populate: {
-        //         path: "propertyInfo",
-        //         select: "ppdid totalArea  propertyInfo",
-        //         populate: {
-        //             path: "basicInfo",
-        //             select: "property basicInfo"
-        //         }
-        //     }
-        // }).select("generalInfo propertyInfo basicInfo");
-        // const authorId = req.params.author
-        // if (authorId) {
-            const locationcollection = await general_info.find()
-            // const locationcollection = await locationInfo.find({ authorId: authorId })
-            //     .populate({
-            //         path: "generalInfo",
-            //         populate: {
-            //             path: "propertyInfo",
-            //             populate: {
-            //                 path: "basicInfo"
-            //             }
-            //         }
-            //     })
-
-            console.log(locationcollection)
-
-            return res.status(200).json({
-                message: "success",
-                locationcollection,
-            });
-        // }
-        // else {
-            // return res.status(400).json({
-            //     message: failed
-            // });
-        // }
-    } catch (err) {
-        return res.status(400).json({
-            error: err.message
+      const authorId = req.params.authorId;
+  
+      const locationcollection = await locationInfo.find({ authorId: authorId })
+        .populate({
+          path: "generalInfo",
+          model:"General",
+          populate: {
+            path: "propertyInfo",
+            model:"Property",
+            populate: {
+              path: "basicinfo",
+              model:"Basic"
+            }
+          }
         });
+  
+      console.log(locationcollection);
+  
+      return res.status(200).json({
+        message: "success",
+        locationcollection,
+      });
+    } catch (err) {
+      return res.status(400).json({
+        error: err.message
+      });
     }
-});
-
+  });
+  
 
 //IMAGES
 router.get("/api/images/:fileName", (req, res) => {

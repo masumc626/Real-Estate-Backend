@@ -13,8 +13,8 @@ const generalInfoScehma = new mongoose.Schema({
     },
     postedby: {
         type: String,
-        enum: ["Dealer", "Owner"],
-        default: "Owner"
+        enum: ["dealer", "owner"],
+        default: "owner"
     },
     saletype: {
         type: String
@@ -33,9 +33,9 @@ const generalInfoScehma = new mongoose.Schema({
     },
     propertyInfo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "properties",
+        ref: "Property",
     }
 
 
 })
-module.exports = mongoose.model("general", generalInfoScehma)
+module.exports = mongoose.model("General", generalInfoScehma)

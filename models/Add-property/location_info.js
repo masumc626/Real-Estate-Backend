@@ -1,44 +1,44 @@
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
-    Email: {
+    email: {
         type: String,
         required: true,
         trim: true
     },
-    City: {
+    city: {
         type:String,
-        enum:["Mumbai", "Pune", "Kolhapur", "Belguam", "Surat", "Nashik"],
+        enum:["Mumbai", "Kolhapur", "Nashik","Delhi"],
         required: true
     },
-    Area:{
+    area:{
         type: String,
         required: true,
         trim: true
     },
-    Pincode:{
+    pincode:{
         type: String,
         required: true
     },
-    Address:{
+    address:{
         type:String,
         required: true,
         trim: true
     },
-    Landmark: {
+    landmark: {
         type: String,
         trim: true
     },
 
-    Latitude: {
+    latitude: {
         type: Number
     },
-    Longitude: {
+    longitude: {
         type: Number
     },
     generalInfo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "generals",
+        ref: "General",
     },
     authorId: {
         type: mongoose.Schema.Types.ObjectId
@@ -46,4 +46,4 @@ const locationSchema = new mongoose.Schema({
 })
 
 
-module.exports=mongoose.model("location", locationSchema);
+module.exports=mongoose.model("Location", locationSchema);
