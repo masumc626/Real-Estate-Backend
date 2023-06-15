@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8001;
 
 
 //ALL ROUTERS
-const propertyRouter = require("./routes/property");
+// const propertyRouter = require("./routes/property");
 
 const userRoute = require("./routes/user");
 
@@ -34,13 +34,16 @@ app.use(bodyParserErrorHandler());
 
 //DB CONNECTION
 const connection = require("./db/connection");
+const propertyRoute = require("./routes/propertyRoute");
 connection();
 
-app.use("/property", propertyRouter);
+app.use("/property", propertyRoute);
 app.use("/user", userRoute);
 
 app.use("/*", (req, res) => {
-    res.send("server is running")
+    res.status(404).json({
+        "status" : "route not found"
+    })
 })
 // =======
 // app.use("/", propertyRouter);
